@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="cn.wzd.mapper.ClassesMapper">
+
+	<!-- 插入一张表 -->
+	<insert id="insertClass" parameterType="classes" >
+		INSERT INTO classes 
+		(class_name,class_teacher_id) 
+		VALUES 
+		(#{class_name},#{class_teacher.teacher_id})
+	</insert>
+	
+	<!-- 通过classes的id查询class的信息，包括该class对应的teacher的信息 -->
+	<!-- <select id="findClassByClassId" parameterType="int" resultMap="classesResultMap">
+	
+	</select> -->
+
+
+
+</mapper>
+  
+  

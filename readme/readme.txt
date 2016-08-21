@@ -22,3 +22,6 @@ class_teacher_id INT,
 CONSTRAINT constraint_pk PRIMARY KEY(class_id),
 CONSTRAINT constraint_fk FOREIGN KEY(class_teacher_id) REFERENCES teacher(teacher_id)
 );
+
+
+/* 2016.08.21 V1.2 E420-PC 提交 */

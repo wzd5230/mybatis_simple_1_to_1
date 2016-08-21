@@ -28,7 +28,7 @@ public class ClassesMapperTest {
 		Classes classes = new Classes();
 		Teacher teacher = new Teacher();
 		
-		teacher.setTeacher_id(2);
+		teacher.setTeacher_id(1);
 		classes.setClass_name("高一(11)班");
 		classes.setClass_teacher(teacher);
 		
@@ -40,4 +40,22 @@ public class ClassesMapperTest {
 		session.close();
 	}
 
+	
+	@Test
+	public void testFindClassByClassId() throws Exception {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		ClassesMapper classesMapper = session.getMapper(ClassesMapper.class);
+		
+		Classes classes = classesMapper.findClassByClassId(4);
+		
+		System.out.println(classes);
+		
+		//关闭会话
+		session.close();
+	}
 }

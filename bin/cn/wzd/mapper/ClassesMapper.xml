@@ -5,6 +5,24 @@
   
 <mapper namespace="cn.wzd.mapper.ClassesMapper">
 
+	<!-- 定义一个结果集到Classes类型的映射 -->
+	<resultMap type="classes" id="classesResultMap">
+		<!-- 将结果集注入到构造方法 -->
+		<constructor>
+			<arg javaType="string" column="class_name"/>
+		</constructor>
+		<!-- 标记结果作为 ID 可以帮助提高整体效能 -->
+		<id property="class_id" column="class_id"/>
+		<result property="class_name" column="class_name"/>
+		<association property="class_teacher" javaType="teacher">
+			<constructor>
+				<arg javaType="string" column="teacher_name"/>
+			</constructor>
+			<id property="teacher_id" column="teacher_id"/>
+			<result property="teacher_name" column="teacher_name"/>
+		</association>
+	</resultMap>
+
 	<!-- 插入一张表 -->
 	<insert id="insertClass" parameterType="classes" >
 		INSERT INTO classes 
@@ -14,9 +32,15 @@
 	</insert>
 	
 	<!-- 通过classes的id查询class的信息，包括该class对应的teacher的信息 -->
-	<!-- <select id="findClassByClassId" parameterType="int" resultMap="classesResultMap">
-	
-	</select> -->
+	<select id="findClassByClassId" parameterType="int" resultMap="classesResultMap">
+		SELECT c.class_id class_id,c.class_name class_name,
+		t.teacher_id teacher_id,t.teacher_name teacher_name
+		FROM classes AS c,teacher AS t
+		WHERE
+		c.class_id = 4
+		AND
+		c.class_teacher_id = t.teacher_id
+	</select>
 
 
 

@@ -6,6 +6,14 @@ public class Classes {
 	private String class_name;
 	private Teacher class_teacher;
 	
+	//构造方法
+	public Classes(String arg){
+		System.out.println("======constructor: "+arg+"======");
+	}
+	
+	public Classes(){
+	}
+	
 	public int getClass_id() {
 		return class_id;
 	}

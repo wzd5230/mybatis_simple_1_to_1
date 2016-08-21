@@ -5,6 +5,13 @@ public class Teacher {
 	private int teacher_id;
 	private String teacher_name;
 	
+	public Teacher() {
+	}
+	
+	public Teacher(String arg){
+		System.out.println("======constructor: "+arg+"======");
+	}
+	
 	public int getTeacher_id() {
 		return teacher_id;
 	}

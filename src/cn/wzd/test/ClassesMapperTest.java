@@ -58,4 +58,48 @@ public class ClassesMapperTest {
 		//关闭会话
 		session.close();
 	}
+	
+	//deleteClassByClassId
+	@Test
+	public void testDeleteClassByClassId() throws Exception {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		ClassesMapper classesMapper = session.getMapper(ClassesMapper.class);
+		
+		classesMapper.deleteClassByClassId( 5 );
+				
+		//关闭会话
+		session.commit();
+		session.close();
+	}
+	
+	//updateClass
+	@Test
+	public void testUpdateClass() throws Exception {
+		String resource = "mybatis-config.xml";
+		InputStream inputStream = Resources.getResourceAsStream(resource);
+		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+		
+		SqlSession session = sqlSessionFactory.openSession();
+		
+		ClassesMapper classesMapper = session.getMapper(ClassesMapper.class);
+		
+		Classes classes = new Classes();
+		Teacher teacher = new Teacher();
+		
+		classes.setClass_id( 6 );
+		classes.setClass_name("高一（11）班");
+		teacher.setTeacher_id(1);
+		classes.setClass_teacher(teacher);
+		
+		classesMapper.updateClass(classes);
+				
+		//关闭会话
+		session.commit();
+		session.close();
+	}
 }

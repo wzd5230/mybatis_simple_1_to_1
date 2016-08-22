@@ -41,6 +41,16 @@
 		AND
 		c.class_teacher_id = t.teacher_id
 	</select>
+	
+	<!-- 通过class_id删除classes表中的条目 -->
+	<delete id="deleteClassByClassId" parameterType="int">
+		DELETE FROM classes WHERE class_id=#{value}
+	</delete>
+	
+	<!-- 通过class_id更新classes表中的条目 -->
+	<update id="updateClass" parameterType="classes">
+		UPDATE classes SET class_name=#{class_name},class_teacher_id=#{class_teacher.teacher_id} WHERE class_id=#{class_id}
+	</update>
 
 
 
